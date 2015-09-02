@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Scrabble Check</string>
+
+    <string name="user_prompt">Enter a word:</string>
+    <string name="yes_answer">This is a scrabble word.</string>
+    <string name="button_text">Check</string>
+    <string name="no_answer">A for effort! But not a word.</string>
+    <string name="action_settings">Settings</string>
+</resources>
