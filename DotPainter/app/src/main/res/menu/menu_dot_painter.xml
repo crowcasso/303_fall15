@@ -1,0 +1,10 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".DotPainterActivity">
+    <item
+        android:id="@+id/action_setwidth"
+        android:title="@string/action_setwidth"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>
