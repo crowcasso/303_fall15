@@ -16,7 +16,10 @@ import java.util.ArrayList;
  */
 public class DoodleView extends View {
 
+    public final static int DEFAULT_WIDTH = 25;
+
     private ArrayList<Dot> theDots;
+    private int penWidth = DEFAULT_WIDTH;
 
     public DoodleView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -25,7 +28,7 @@ public class DoodleView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        theDots.add(new Dot(event.getX(), event.getY()));
+        theDots.add(new Dot(event.getX(), event.getY(), penWidth));
         return true;
     }
 
@@ -36,5 +39,13 @@ public class DoodleView extends View {
             dot.draw(canvas);
         }
         invalidate();
+    }
+
+    public void setPenWidth(int penWidth) {
+        this.penWidth = penWidth;
+    }
+
+    public int getPenWidth() {
+        return penWidth;
     }
 }

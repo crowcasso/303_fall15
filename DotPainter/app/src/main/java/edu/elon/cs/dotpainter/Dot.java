@@ -10,14 +10,15 @@ import android.graphics.Paint;
  */
 public class Dot {
 
-    private final int RADIUS = 50;
-
     private float x, y;
+    private int penWidth;
     private Paint paint;
 
-    public Dot(float x, float y) {
+    public Dot(float x, float y, int penWidth) {
         this.x = x;
         this.y = y;
+
+        this.penWidth = penWidth;
 
         // random color
         int red = (int) (Math.random() * 256);
@@ -29,7 +30,7 @@ public class Dot {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawCircle(x, y, RADIUS, paint);
+        canvas.drawCircle(x, y, penWidth, paint);
     }
 
 }

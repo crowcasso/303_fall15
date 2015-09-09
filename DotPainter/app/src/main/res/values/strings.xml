@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Dot Painter</string>
-
-    <string name="hello_world">Hello world!</string>
+    <string name="cancel_label">Cancel</string>
+    <string name="ok_label">OK</string>
+    <string name="action_setwidth">Set Width</string>
+    <string name="title_activity_set_width_dialog">Set the Pen Width</string>
     <string name="action_settings">Settings</string>
 </resources>
