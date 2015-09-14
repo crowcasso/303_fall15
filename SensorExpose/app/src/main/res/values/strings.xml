@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SensorExpose</string>
+    <string name="accel_label">Accelerometer</string>
+    <string name="accel_x_label">X:</string>
+    <string name="accel_y_label">Y:</string>
+    <string name="accel_z_label">Z:</string>
+    <string name="gps_label">GPS</string>
+    <string name="gps_lat_label">Latitude:</string>
+    <string name="gps_long_label">Longitude:</string>
+    <string name="gps_alt_label">Altitude:</string>
+    <string name="gps_acc_label">Accuracy:</string>
+    <string name="action_settings">Settings</string>
+</resources>
