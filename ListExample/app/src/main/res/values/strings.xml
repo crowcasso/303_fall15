@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ListExample</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="options">
+        <item>Item #1</item>
+        <item>Item #2</item>
+        <item>Item #3</item>
+        <item>Item #4</item>
+        <item>Item #5</item>
+        <item>Item #6</item>
+        <item>Item #7</item>
+        <item>Item #8</item>
+        <item>Item #9</item>
+        <item>Item #10</item>
+        <item>Item #11</item>
+        <item>Item #12</item>
+    </string-array>
+    <string name="title_activity_show">ShowActivity</string>
+</resources>
