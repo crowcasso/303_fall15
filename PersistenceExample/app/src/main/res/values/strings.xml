@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PersistenceExample</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_save">Save</string>
+    <string name="action_load">Load</string>
+</resources>
