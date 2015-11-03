@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">NotesHTTPExample</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="x">X: </string>
+    <string name="y">Y: </string>
+    <string name="note">Note: </string>
+    <string name="which">Note #: </string>
+
+    <string name="addbutton">Add Note: </string>
+    <string name="deletebutton">Delete Note: </string>
+    <string name="showbutton">Show Note: </string>
+    <string name="showallbutton">Show All Notes: </string>
+
+
+</resources>

@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
     private EditText phone, name, latitude, longitude;
     private TextView textView;
 
-    // URL -- phone be connected to Elon's network
+    // URL -- phone must be connected to Elon's network
     private final String baseURL = "http://trumpy.cs.elon.edu:5000/rides";
 
     // values from the EditTexts
