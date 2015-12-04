@@ -3,10 +3,14 @@ package edu.elon.cs.flying;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -25,6 +29,9 @@ public class GameLoopView extends SurfaceView implements SurfaceHolder.Callback 
     // touch location for the bird
     private float touchX, touchY;
 
+    // TextView for the FPS value
+    private TextView textView;
+
     public GameLoopView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -35,9 +42,21 @@ public class GameLoopView extends SurfaceView implements SurfaceHolder.Callback 
         surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
 
-        // game loop thread
-        thread = new GameLoopThread();
+        // game loop thread -- add a handler to update the TextView
+        thread = new GameLoopThread(msgHandler);
     }
+
+    // set the overlay textview
+    public void setTextView(TextView textView) {
+        this.textView = textView;
+    }
+
+    // Handler callback
+    Handler msgHandler = new Handler() {
+        public void handleMessage(Message m) {
+            textView.setText(m.getData().getString("data"));
+        }
+    };
 
 
     // SurfaceHolder.Callback methods:
@@ -45,7 +64,7 @@ public class GameLoopView extends SurfaceView implements SurfaceHolder.Callback 
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         // thread exists, but is in terminated state
         if (thread.getState() == Thread.State.TERMINATED) {
-            thread = new GameLoopThread();
+            thread = new GameLoopThread(msgHandler);
         }
 
         // start the game loop
@@ -100,7 +119,13 @@ public class GameLoopView extends SurfaceView implements SurfaceHolder.Callback 
         private int frames;
         private long nextUpdate;
 
-        public GameLoopThread() {
+        // the handler for updates to the TextView
+        private Handler handler;
+
+        public GameLoopThread(Handler handler) {
+
+            this.handler = handler;
+
             bird = new Bird(context);
 
             clouds = new ArrayList<Cloud>();
@@ -143,7 +168,9 @@ public class GameLoopView extends SurfaceView implements SurfaceHolder.Callback 
                     doUpdate(elapsed);
                     doDraw(canvas);
 
-                    //updateFPS(now);
+                    // compute and show FPS
+                    updateFPS(now);
+
                 }
 
                 // release the canvas
@@ -151,6 +178,14 @@ public class GameLoopView extends SurfaceView implements SurfaceHolder.Callback 
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 }
             }
+        }
+
+        private void sendMessage(String message) {
+            Message msg = handler.obtainMessage();
+            Bundle b = new Bundle();
+            b.putString("data", message);
+            msg.setData(b);
+            handler.sendMessage(msg);
         }
 
         // an approximate frames per second calculation
@@ -162,7 +197,7 @@ public class GameLoopView extends SurfaceView implements SurfaceHolder.Callback 
                 fps = frames / (1 + overtime/1000.0f);
                 frames = 0;
                 nextUpdate = System.currentTimeMillis() + 1000;
-                System.out.println("FPS: " + (int) fps);
+                sendMessage((int)fps + "");
             }
         }
 
@@ -170,6 +205,7 @@ public class GameLoopView extends SurfaceView implements SurfaceHolder.Callback 
 
         // move all objects in the game
         private void doUpdate(double elapsed) {
+
             for (Cloud cloud : clouds) {
                 cloud.doUpdate(elapsed);
             }
